@@ -1,0 +1,51 @@
+<!-- Controls for Search and Filters -->
+<div class="controls">
+  <input
+    type="text"
+    placeholder="Search by name"
+    [(ngModel)]="searchQuery"
+    (ngModelChange)="filterContacts()" 
+    class="search-input"
+  />
+  <select [(ngModel)]="selectedDepartment" (ngModelChange)="filterContacts()" class="filter-dropdown">
+    <option value="">All Departments</option>
+    <option *ngFor="let department of departments" [value]="department">
+      {{ department }}
+    </option>
+  </select>
+</div>
+
+<!-- Display Contacts -->
+<div *ngIf="filteredContacts.length > 0; else noContacts">
+  <div class="contacts-container">
+    <div *ngFor="let contact of paginatedContacts" class="contact-card" (click)="showContactDetails(contact)">
+      <div class="avatar-placeholder">👤</div> <!-- Symbol for avatar -->
+      <h3>{{ contact.firstName }} {{ contact.lastName }}</h3>
+      <p>{{ contact.department }}</p>
+      <p>{{ contact.phoneNumber }}</p>
+    </div>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+  </div>
+</div>
+
+<!-- No Contacts Found Template -->
+<ng-template #noContacts>
+  <p>No contacts found.</p>
+</ng-template>
+
+<!-- Contact Details Modal -->
+<div *ngIf="selectedContact" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h3>{{ selectedContact.firstName }} {{ selectedContact.lastName }}</h3>
+    <div class="avatar-placeholder">👤</div> <!-- Placeholder for Avatar -->
+    <p>Department: {{ selectedContact.department }}</p>
+    <p>Phone Number: {{ selectedContact.phoneNumber }}</p>
+  </div>
+</div>
