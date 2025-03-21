@@ -1,7 +1,18 @@
 # ContactsAppFrontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.3.
+A full-stack contact management system that allows users to create, read, update, and delete contact information. This project includes both the frontend and backend, with a focus on backend testing using Jest to ensure API reliability.
 
+## 🛠 Tech Stack
+- JavaScript
+- Express.js
+- Git, GitHub
+- Jest (for backend testing)
+
+## 📌 Features
+- ✔️ Full-stack contact management system with CRUD operations.
+- ✔️ Pagination and search functionality for easy contact browsing.
+- ✔️ Backend testing with Jest to ensure API reliability.
+  
 ## Development server
 
 To start a local development server, run:
